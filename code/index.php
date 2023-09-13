@@ -1,3 +1,23 @@
+<?php
+
+$table =
+    [
+        [
+            "id"=>1,
+            "title"=>"Loren ipsum dolor."
+        ],
+        [
+            "id" => 2,
+            "title" => "Loren ipsum dolor."
+        ],
+        [
+            "id" => 2,
+            "title" => "Loren ipsum dolor."
+        ],
+    ]
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,6 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.html">MainPage</a>
                 </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -35,16 +56,16 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($table as $item): ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Loren ipsum dolor.</td>
+                        <th scope="row"><?php echo $item['id']?></th>
+                        <td><?php echo $item['title']?></td>
                         <td>
                             <a href="#" class="btn btn-warning">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                         </td>
-
                     </tr>
-
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
