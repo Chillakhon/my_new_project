@@ -1,21 +1,23 @@
 <?php
+function dd($data){
+    echo "<pre>";
+    var_dump($data);
+    echo "</pre>";
+} //Функция для вордампа
+function pdo($dbname)
+{
+    return new PDO("mysql:host=localhost;dbname=$dbname",'root','root');
+} //Для подключение базу
+function get_posts_all ($name_table) {
+    $pdo = pdo('app3');
+    $sql = "SELECT * FROM $name_table";
+    $stm = $pdo->prepare($sql);
+    $stm->execute();
+    $posts = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $posts;
+}
 
-$table =
-    [
-        [
-            "id"=>1,
-            "title"=>"Loren ipsum dolor."
-        ],
-        [
-            "id" => 2,
-            "title" => "Loren ipsum dolor."
-        ],
-        [
-            "id" => 2,
-            "title" => "Loren ipsum dolor."
-        ],
-    ]
-
+$posts = get_posts_all('posts');
 ?>
 
 <!doctype html>
@@ -36,7 +38,7 @@ $table =
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">MainPage</a>
+                    <a class="nav-link" href="index.php">MainPage</a>
                 </li>
             </ul>
         </div>
@@ -56,7 +58,7 @@ $table =
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($table as $item): ?>
+                    <?php foreach ($posts as $item): ?>
                     <tr>
                         <th scope="row"><?php echo $item['id']?></th>
                         <td><?php echo $item['title']?></td>
@@ -71,7 +73,5 @@ $table =
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
