@@ -41,7 +41,7 @@
                         <td> <a href="show.php?id=<?php echo $item['id']?>"> <?php echo $item['title']?> <a/> </td>
                         <td>
                             <a href="edit.php?id=<?php echo $item['id']?>" class="btn btn-warning">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="delete.php?id=<?php echo $item['id']?>" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

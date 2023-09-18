@@ -38,20 +38,23 @@ class QueryBuilder
     }
     public function update ($nameTable,$data,$id)
     {
-
         $keys = array_keys($data);
+        $str = "";
         foreach ($keys as $key)
         {
-            $str = $key . '=:' . $key . ',';
+            $str.=$key . '=:' . $key . ',';
         }
-
         $keys =rtrim($str,',');
-        dd($keys);
-
-
-        $sql = "UPDATE {$nameTable} SET title=:title WHERE id=$id";
+        $sql = "UPDATE {$nameTable} SET {$keys} WHERE id=$id";
         $stm = $this->pdo->prepare($sql);
-        $stm->bindValue(":title",$values);
+        $stm->bindValue(":id",$id);
+        $stm->execute($data);
+    }
+    public function delete($table,$id)
+    {
+        $sql = "DELETE FROM $table WHERE id=:id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(':id',$id);
         $stm->execute();
     }
 }
