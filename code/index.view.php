@@ -38,9 +38,9 @@
                     <?php foreach ($posts as $item): ?>
                     <tr>
                         <th scope="row"><?php echo $item['id']?></th>
-                        <td><?php echo $item['title']?></td>
+                        <td> <a href="show.php?id=<?php echo $item['id']?>"> <?php echo $item['title']?> <a/> </td>
                         <td>
-                            <a href="#" class="btn btn-warning">Edit</a>
+                            <a href="edit.php?id=<?php echo $item['id']?>" class="btn btn-warning">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
