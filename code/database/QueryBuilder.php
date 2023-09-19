@@ -36,6 +36,7 @@ class QueryBuilder
         $stm->bindValue("{$valuesKeys}","{$values}");
         $stm->execute();
     }
+
     public function update ($nameTable,$data,$id)
     {
         $keys = array_keys($data);
@@ -50,6 +51,7 @@ class QueryBuilder
         $stm->bindValue(":id",$id);
         $stm->execute($data);
     }
+
     public function delete($table,$id)
     {
         $sql = "DELETE FROM $table WHERE id=:id";
